@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Academic Focus — Task Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='material.css') }}">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="md-header">
+    <div class="md-container header-flex">
+      <h1>Academic Focus — Student Task Planner</h1>
+
+      <div class="header-right">
+        <span class="welcome-text">Welcome, {{ username }}</span>
+        <a class="md-btn md-btn-outline" href="/export">Export CSV</a>
+        <a class="md-btn md-btn-outline logout-btn" href="/logout">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="md-container">
+
+    <!-- DASHBOARD OVERVIEW -->
+    <section class="md-card md-dashboard">
+      <h2>Overview</h2>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-label">Total tasks</div>
+          <div class="stat-value">{{ stats.total }}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value">{{ stats.completed }}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Pending</div>
+          <div class="stat-value">{{ stats.pending }}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Due today</div>
+          <div class="stat-value">{{ stats.due_today }}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Due in 7 days</div>
+          <div class="stat-value">{{ stats.due_this_week }}</div>
+        </div>
+      </div>
+
+      <div class="progress-wrapper">
+        <div class="progress-label">Completion</div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ stats.completion_pct }}%;"></div>
+        </div>
+        <div class="progress-caption">{{ stats.completion_pct }}% of tasks completed</div>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="md-grid">
+
+      <!-- LEFT SIDE: ADD TASK -->
+      <div class="md-card md-col-5">
+        <h2>Add Task</h2>
+
+        <form action="/tasks" method="post" class="md-form">
+          <label>Title
+            <input name="title" required>
+          </label>
+
+          <label>Due date
+            <input name="due_date" placeholder="YYYY-MM-DD">
+          </label>
+
+          <label>Priority
+            <select name="priority">
+              <option {% if false %}selected{% endif %}>Low</option>
+              <option {% if priority == 'Normal' %}selected{% endif %} selected>Normal</option>
+              <option {% if false %}selected{% endif %}>High</option>
+            </select>
+          </label>
+
+          <label>Course
+            <input name="course" placeholder="Optional">
+          </label>
+
+          <div class="md-actions">
+            <button class="md-btn md-btn-primary" type="submit">Add Task</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT SIDE: TASK LIST + FILTERS -->
+      <div class="md-card md-col-7">
+        <div class="tasks-header">
+          <h2>Tasks</h2>
+
+          <!-- Filters & Sorting -->
+          <form method="get" class="filter-form">
+            <label>Sort by
+              <select name="sort" onchange="this.form.submit()">
+                <option value="due" {% if sort == 'due' %}selected{% endif %}>Due date</option>
+                <option value="priority" {% if sort == 'priority' %}selected{% endif %}>Priority</option>
+                <option value="course" {% if sort == 'course' %}selected{% endif %}>Course</option>
+              </select>
+            </label>
+
+            <label>Priority
+              <select name="priority" onchange="this.form.submit()">
+                <option value="all" {% if priority == 'all' %}selected{% endif %}>All</option>
+                <option value="Low" {% if priority == 'Low' %}selected{% endif %}>Low</option>
+                <option value="Normal" {% if priority == 'Normal' %}selected{% endif %}>Normal</option>
+                <option value="High" {% if priority == 'High' %}selected{% endif %}>High</option>
+              </select>
+            </label>
+
+            <label>Status
+              <select name="status" onchange="this.form.submit()">
+                <option value="all" {% if status == 'all' %}selected{% endif %}>All</option>
+                <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="completed" {% if status == 'completed' %}selected{% endif %}>Completed</option>
+              </select>
+            </label>
+          </form>
+        </div>
+
+        <div class="task-list">
+          {% for t in tasks %}
+            <div class="task-card {% if t.completed %}done{% endif %}">
+              <div class="task-main">
+                <div class="task-title">{{ t.title }}</div>
+                <div class="task-meta">
+                  {{ t.due_date }} • {{ t.priority }} • {{ t.course }}
+                </div>
+              </div>
+
+              <div class="task-actions">
+                <button class="md-icon" onclick="toggleComplete({{ t.id }})">✓</button>
+                <button class="md-icon danger" onclick="deleteTask({{ t.id }})">🗑</button>
+              </div>
+            </div>
+          {% else %}
+            <div class="empty">No tasks yet.</div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT -->
+  <script>
+  async function toggleComplete(id){
+    const form = new FormData();
+    form.append('completed','true');
+
+    const resp = await fetch('/tasks/' + id, {
+      method: 'PATCH',
+      body: form
+    });
+
+    if(resp.ok) location.reload();
+  }
+
+  async function deleteTask(id){
+    const resp = await fetch('/tasks/' + id, {
+      method: 'DELETE'
+    });
+
+    if(resp.ok) location.reload();
+  }
+  </script>
+
+</body>
+</html>

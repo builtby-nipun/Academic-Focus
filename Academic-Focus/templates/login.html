@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Academic Focus — Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='material.css') }}">
+</head>
+<body>
+
+  <main class="md-container center-card">
+    <div class="md-card login-card">
+
+      <h2>Welcome to Academic Focus 👋</h2>
+      <p class="subtitle">Sign in to access your task planner</p>
+
+      {% if error %}
+        <div class="error-msg">{{ error }}</div>
+      {% endif %}
+
+      <form action="/login" method="post" class="md-form">
+
+        <label>Username
+          <input type="text" name="username" placeholder="Enter username">
+        </label>
+
+        <label>Password
+          <input type="password" name="password" placeholder="Enter password">
+        </label>
+
+        <div class="md-actions">
+          <button class="md-btn md-btn-primary" type="submit">Login</button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+</body>
+</html>

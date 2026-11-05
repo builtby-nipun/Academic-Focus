@@ -1,0 +1,426 @@
+:root {
+  --primary: #1976d2;
+  --primary-soft: #e3f0ff;
+  --surface: #ffffff;
+  --muted: #738092;
+  --accent: #00bfa5;
+  --danger: #e55353;
+  --bg: #f4f6fb;
+  --border-soft: #e0e7f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: #1f2933;
+}
+
+/* ---------------- HEADER ---------------- */
+
+.md-header {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.md-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.header-flex h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 650;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2ecff;
+}
+
+.md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.md-btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.35);
+}
+
+.md-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(25, 118, 210, 0.38);
+}
+
+.md-btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.md-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.logout-btn {
+  border-color: #ffd7dd !important;
+  color: #ffeef0 !important;
+}
+
+/* ---------------- MAIN LAYOUT ---------------- */
+
+main.md-container {
+  padding-top: 22px;
+  padding-bottom: 28px;
+}
+
+/* Generic card */
+
+.md-card {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  padding: 18px 20px;
+}
+
+.md-card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* -------- DASHBOARD -------- */
+
+.md-dashboard {
+  margin-bottom: 22px;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.stat-box {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  border: 1px solid var(--border-soft);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* progress */
+
+.progress-wrapper {
+  margin-top: 4px;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 11px;
+  border-radius: 999px;
+  background: #e0e7f7;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #22c55e);
+}
+
+.progress-caption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* -------- GRID: ADD TASK + TASK LIST -------- */
+
+.md-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 20px;
+}
+
+/* Left column */
+.md-col-5 {
+  grid-column: 1 / span 1;
+}
+
+/* Right column */
+.md-col-7 {
+  grid-column: 2 / span 1;
+}
+
+/* Forms */
+
+.md-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.md-form input,
+.md-form select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid #d6e0f3;
+  background: #f9fbff;
+  font-size: 14px;
+  outline: none;
+}
+
+.md-form input:focus,
+.md-form select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px rgba(25, 118, 210, 0.35);
+}
+
+.md-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+/* -------- TASK LIST & FILTERS -------- */
+
+.tasks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.filter-form label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.filter-form select {
+  margin-top: 2px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #d7e2f5;
+  background: #f9fbff;
+  font-size: 13px;
+}
+
+/* Task list */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #e1e9f7;
+  background: #ffffff;
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.task-main {
+  max-width: 75%;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.task-meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.task-card.done .task-title,
+.task-card.done .task-meta {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.md-icon {
+  background: #f4f6ff;
+  border-radius: 999px;
+  border: none;
+  padding: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.md-icon:hover {
+  background: #e2ebff;
+}
+
+.md-icon.danger {
+  background: #ffe7ea;
+  color: var(--danger);
+}
+
+.md-icon.danger:hover {
+  background: #ffd4da;
+}
+
+/* Empty state */
+
+.empty {
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* -------- LOGIN PAGE -------- */
+
+.center-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 40px);
+}
+
+.login-card {
+  width: 360px;
+}
+
+.subtitle {
+  margin-top: -6px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.error-msg {
+  background: #ffe5e5;
+  color: #c02626;
+  padding: 9px 11px;
+  border-radius: 9px;
+  margin-bottom: 14px;
+  border: 1px solid #ffb4b4;
+  font-size: 13px;
+}
+
+/* -------- RESPONSIVE -------- */
+
+@media (max-width: 900px) {
+  .md-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .md-col-5,
+  .md-col-7 {
+    grid-column: 1 / span 1;
+  }
+
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .header-right {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .md-card {
+    padding: 16px;
+  }
+
+  main.md-container {
+    padding: 16px;
+  }
+
+  .stats-row {
+    gap: 8px;
+  }
+
+  .stat-box {
+    min-width: 45%;
+  }
+
+  .header-flex h1 {
+    font-size: 18px;
+  }
+}
