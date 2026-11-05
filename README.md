@@ -197,14 +197,12 @@ The current authentication is intended for a local/demo application. A productio
 
 ## Author
 
-**Aditya Yadav**
+**Nipun Wadyalkar**
 
 Bachelor of Applied Computer Science student focused on software development, backend engineering, APIs, databases, testing, and full-stack development.
 
-**GitHub:** [github.com/Iamaditya9](https://github.com/Iamaditya9)  
-**LinkedIn:** [linkedin.com/in/aditya-yadav-tech](https://www.linkedin.com/in/aditya-yadav-tech)  
-**Email:** [ydaditya39@gmail.com](mailto:ydaditya39@gmail.com)
-
----
+- **GitHub:** [builtby-nipun](https://github.com/builtby-nipun)
+- **LinkedIn:** www.linkedin.com/in/nipun-wadyalkar
+- **Email:** nipunwadyalkar@gmail.com
 
 If you find this project useful, feel free to ⭐ the repository.
