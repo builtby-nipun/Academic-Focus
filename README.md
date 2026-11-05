@@ -202,7 +202,7 @@ The current authentication is intended for a local/demo application. A productio
 Bachelor of Applied Computer Science student focused on software development, backend engineering, APIs, databases, testing, and full-stack development.
 
 - **GitHub:** [builtby-nipun](https://github.com/builtby-nipun)
-- **LinkedIn:** www.linkedin.com/in/nipun-wadyalkar
+-- **LinkedIn:** [linkedin.com/in/nipun-wadyalkar](https://www.linkedin.com/in/nipun-wadyalkar)
 - **Email:** nipunwadyalkar@gmail.com
 
 If you find this project useful, feel free to ⭐ the repository.
